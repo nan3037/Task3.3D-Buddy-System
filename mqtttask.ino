@@ -120,7 +120,7 @@ if (distance < 25)
     while (mqttClient.available()) {
       Serial.print((char)mqttClient.read());
     }
-    blink_thrice();
+    blink_times(3);
     Serial.println();
   }
 
@@ -129,21 +129,23 @@ if (distance < 25)
 
 /*
 
-  for blinking three times when message is recieved
+  for blinking number of times when message is recieved
   
 */
-void blink_thrice()
+void blink_times(int i )
+{
+  while (i > 0)
+  {
+    blink(); 
+    i--;
+  }  
+}
+
+//setting up blink duration 
+void blink()
 {
   digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
   delay(500);                       // wait for a second
   digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
-  delay(500);  
-  digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(500);                       // wait for a second
-  digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
-  delay(500);   
-  digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(500);                       // wait for a second
-  digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
-  delay(500);    
+  delay(500); 
 }
